@@ -32,14 +32,7 @@ secure_headers = secure.Secure(
     cache=cache_value,
 )
 
-if __name__ == '__main__':
-    '''ON_POSIX = 'posix' in sys.builtin_module_names
-    __var__ = os.path.join(os.path.dirname(__file__))
-    _p_ = subprocess.Popen(
-        ['py', f'{__var__}/check_tables.py'],
-        shell=False, creationflags=subprocess.CREATE_NEW_CONSOLE, stdout=subprocess.PIPE, universal_newlines=True,
-        bufsize=1, close_fds=ON_POSIX)'''
-    
+if __name__ == '__main__':     
     uvicorn.run(
         'main:app',
         host=_host_,
