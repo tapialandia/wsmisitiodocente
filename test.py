@@ -724,4 +724,33 @@ if 1==2:
     print("------------postgre------------")
     for row in _c_fire_:
         print(row)
-print( database.get_inspector() );
+if 2==3:
+    print( database.get_inspector() );
+
+
+    
+ll_iddocente = 2037 
+ls_sql =    f""" select c.prefijo, a.idpersona, a.iddocente, b.nombre, b.apellido, 
+            b.cinro, b.tipodoc, b.fechanac,
+            b.estadocivil, b.sexo, b.gruposanguineo, 
+            b.email,b.telefparticular, b.telefmovil, cast(TRIM(b.direccion) as varchar(150)) as direccion 
+            from docente a, persona b, prefijo c 
+            where a.iddocente = {ll_iddocente} 
+            and a.idpersona = b.idpersona 
+            and a.idprefijo = c.idprefijo  """
+_cursor_ = database.execute_raw_sql_bancard(ls_sql) 
+_cursor_keys_ = _cursor_.keys()
+data = []
+for row in _cursor_:
+    _row_ = {}
+    for key in _cursor_keys_:
+        _row_[key] = row[key]
+    data.append(_row_)
+print(data) 
+
+
+#for row in _cursor_:
+    #ljson_registro = json.dumps(row)
+    #print(row)
+    
+
